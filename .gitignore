@@ -29,8 +29,9 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+### VS Code ####
 .vscode/
 
 ### Local properties ###
+!**/src/main/resources/application-local.yml
 
