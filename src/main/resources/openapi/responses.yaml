@@ -1,0 +1,34 @@
+NotFound:
+  description: La risorsa richiesta non è stata trovata
+  content:
+    application/json:
+      schema:
+        $ref: './entities.yaml#/NotFound'
+
+Unauthorized:
+  description: Non autorizzato
+  content:
+    application/json:
+      schema:
+        $ref: './entities.yaml#/Unauthorized'
+
+BadRequest:
+  description: Richiesta non valida
+  content:
+    application/json:
+      schema:
+        $ref: './entities.yaml#/BadRequest'
+
+GenericError:
+  description: Generic Error
+  content:
+    application/json:
+      schema:
+        $ref: './entities.yaml#/GenericError'
+
+StatusError:
+  description: Sinistro in errore
+  content:
+    application/json:
+      schema:
+        $ref: './entities.yaml#/StatusError'

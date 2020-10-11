@@ -1,0 +1,12 @@
+server:
+  port: 8080   # HTTP (Tomcat) port
+endpoints:
+  shutdown:
+    enabled: false
+    sensitive: false
+logging:
+  level:
+    root: INFO
+spring:
+  application:
+    name: tinyweatherbulletin-api

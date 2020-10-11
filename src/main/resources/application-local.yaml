@@ -1,0 +1,12 @@
+#spring:
+
+logging:
+  level:
+    root: WARN
+    com.faire.ai.tinyweatherbulletin: DEBUG
+
+
+
+
+
+

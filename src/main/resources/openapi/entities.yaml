@@ -1,0 +1,65 @@
+NotFound:
+  description: La risorsa richiesta non è stata trovata
+  properties:
+    message:
+      type: string
+      default: Risorsa non trovata
+  example:
+    message: Risorsa non trovata
+
+BadRequest:
+  description: Richiesta non valida
+  properties:
+    message:
+      type: string
+      default: Richiesta non valida
+  example:
+    message: Richiesta non valida
+
+GenericResponse:
+  description: Generic Response
+  properties:
+    message:
+      type: string
+      default: Ok
+  example:
+    message: Ok
+
+Unauthorized:
+  description: Non autorizzato
+  properties:
+    message:
+      type: string
+      default: Non autorizzato
+  example:
+    message: Non autorizzato
+
+GenericError:
+  description: Generic Error
+  properties:
+    message:
+      type: string
+      default: Error
+  example:
+    message: Generic Error
+
+StatusError:
+  description: Generic Error
+  properties:
+    error_code:
+      type: integer
+      default: Error
+    error_message:
+      type: string
+      default: Error
+  example:
+    message: Generic Error
+
+Test:
+  description: Test
+  properties:
+    test:
+      description: test
+      type: string
+
+

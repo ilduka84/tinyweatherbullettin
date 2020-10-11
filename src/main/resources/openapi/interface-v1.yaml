@@ -1,0 +1,32 @@
+openapi: "3.0.0"
+info:
+  version: 0.0.1
+  title: Software Interattivo
+
+paths:
+  /test:
+    get:
+      summary: Ricerca test
+      description: Ricerca
+      operationId: testGet
+      parameters:
+        - name: test
+          description: test
+          in: query
+          required: true
+          schema:
+            type: string
+          example: "FN261XE"
+      responses:
+        '200':
+          description: test
+          content:
+            application/json:
+              schema:
+                $ref: "./entities.yaml#/Test"
+        '400':
+          $ref: './responses.yaml#/BadRequest'
+        '404':
+          $ref: './responses.yaml#/NotFound'
+        default:
+          $ref: './responses.yaml#/GenericError'
