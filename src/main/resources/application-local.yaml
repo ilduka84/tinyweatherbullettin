@@ -1,5 +1,5 @@
-#spring:
-
+openweather:
+  apikey: 6665252771e0d223e831ec42d127e0ae
 logging:
   level:
     root: WARN
