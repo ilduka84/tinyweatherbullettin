@@ -1,0 +1,19 @@
+weather:
+  url: http://api.openweathermap.org
+  path: /data/2.5/forecast
+  query: ?q=%s,%s&appid=%s
+  workinghours: >
+    9:00,
+    18:00
+server:
+  port: 8080   # HTTP (Tomcat) port
+endpoints:
+  shutdown:
+    enabled: false
+    sensitive: false
+logging:
+  level:
+    root: INFO
+spring:
+  application:
+    name: tinyweatherbulletin-api
