@@ -46,10 +46,10 @@ GenericError:
 StatusError:
   description: Generic Error
   properties:
-    error_code:
+    cod:
       type: integer
       default: Error
-    error_message:
+    message:
       type: string
       default: Error
   example:

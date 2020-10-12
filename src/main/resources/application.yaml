@@ -1,6 +1,10 @@
-openweather:
-  url: api.openweathermap.org/data/2.5/forecast
-  workinghours: [9, 18]
+weather:
+  url: http://api.openweathermap.org
+  path: /data/2.5/forecast
+  query: ?q=%s,%s&appid=%s
+  workinghours: >
+    9:00,
+    18:00
 server:
   port: 8080   # HTTP (Tomcat) port
 endpoints:

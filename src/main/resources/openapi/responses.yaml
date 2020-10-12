@@ -5,13 +5,6 @@ NotFound:
       schema:
         $ref: './entities.yaml#/NotFound'
 
-Unauthorized:
-  description: Non autorizzato
-  content:
-    application/json:
-      schema:
-        $ref: './entities.yaml#/Unauthorized'
-
 BadRequest:
   description: Richiesta non valida
   content:
