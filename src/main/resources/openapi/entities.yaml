@@ -62,4 +62,49 @@ Test:
       description: test
       type: string
 
+ThreeDaysForecast:
+  type: object
+  description: ThreeDaysForecast
+  properties:
+    day1:
+      description: Day1
+      type: object
+      $ref: "./entities.yaml#/Day"
+    day2:
+      description: Day2
+      type: object
+      $ref: "./entities.yaml#/Day"
+    day3:
+      description: Day3
+      type: object
+      $ref: "./entities.yaml#/Day"
 
+Day:
+  type: object
+  description: ThreeDaysForecast
+  properties:
+    duringWorkingHours:
+      description: Info during Working hours
+      type: object
+      $ref: "./entities.yaml#/Info"
+    OutsideWorkingHours:
+      description: Info Outside Working hours
+      type: object
+      $ref: "./entities.yaml#/Info"
+
+Info:
+  type: object
+  description: ThreeDaysForecast
+  properties:
+    averageMaxTemperature:
+      description: average Max Temperature
+      type: number
+      format: double
+    averageMinTemperature:
+      description: averageMinTemperature
+      type: number
+      format: double
+    averageHumidity:
+      description: average Humidity
+      type: number
+      format: integer

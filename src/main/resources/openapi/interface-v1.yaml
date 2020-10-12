@@ -30,3 +30,36 @@ paths:
           $ref: './responses.yaml#/NotFound'
         default:
           $ref: './responses.yaml#/GenericError'
+  /three-days-forecast/{country}/{city}:
+    get:
+      summary: Three days forecast
+      description: Three days forecast
+      operationId: getThreeDaysForecast
+      parameters:
+        - in: path
+          name: country
+          description: country
+          required: true
+          schema:
+            type: string
+            default: IT
+        - in: path
+          name: city
+          description: city
+          required: true
+          schema:
+            type: string
+            default: Milan
+      responses:
+        '200':
+          description: Three days forecast
+          content:
+            application/json:
+              schema:
+                $ref: "./entities.yaml#/ThreeDaysForecast"
+        '400':
+          $ref: './responses.yaml#/BadRequest'
+        '404':
+          $ref: './responses.yaml#/NotFound'
+        default:
+          $ref: './responses.yaml#/GenericError'
