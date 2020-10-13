@@ -25,11 +25,11 @@ public class WeatherBullettinsUtils {
         index = dayIndex1.getRight();
         Pair<Day, Integer> dayIndex2 = getDayFrom(bulletins, rangeTimestamp, index);
         rangeTimestamp = getNextDayRangesInTimestamp(3, workingHours);
-        index = dayIndex1.getRight();
+        index = dayIndex2.getRight();
         Pair<Day, Integer> dayIndex3 = getDayFrom(bulletins, rangeTimestamp, index);
         threeDaysForecast.setDay1(dayIndex1.getLeft());
         threeDaysForecast.setDay2(dayIndex2.getLeft());
-        threeDaysForecast.setDay1(dayIndex3.getLeft());
+        threeDaysForecast.setDay3(dayIndex3.getLeft());
         return threeDaysForecast;
     }
 
