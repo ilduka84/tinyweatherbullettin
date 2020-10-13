@@ -37,15 +37,6 @@ Unauthorized:
 GenericError:
   description: Generic Error
   properties:
-    message:
-      type: string
-      default: Error
-  example:
-    message: Generic Error
-
-StatusError:
-  description: Generic Error
-  properties:
     cod:
       type: integer
       default: Error
