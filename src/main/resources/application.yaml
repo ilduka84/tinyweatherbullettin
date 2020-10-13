@@ -1,7 +1,7 @@
 weather:
   url: http://api.openweathermap.org
   path: /data/2.5/forecast
-  query: ?q=%s,%s&appid=%s
+  query: ?q=%s,%s&appid=%s,units=metric
   workinghours: >
     9:00,
     18:00

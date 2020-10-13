@@ -106,5 +106,5 @@ Info:
       format: double
     averageHumidity:
       description: average Humidity
-      type: number
-      format: integer
+      type: integer
+
