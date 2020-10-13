@@ -15,6 +15,7 @@ class WeatherBullettinsUtilsTest {
 
     @Test
     void fromWeatherBullettinsTo() {
+
     }
 
     @Test
@@ -23,7 +24,17 @@ class WeatherBullettinsUtilsTest {
         workingHours.add("9:00");
         workingHours.add("18:00");
         List<Long> result = WeatherBullettinsUtils.getNextDayRangesInTimestamp(1,workingHours );
-        System.out.println(result);
+        assertTrue(result.size()==4);
+
+    }
+
+    @Test
+    void getDayFrom(){
+
+    }
+
+    @Test
+    void getNextDayRangesInTimestamp(){
 
     }
 }
