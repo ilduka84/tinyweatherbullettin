@@ -22,10 +22,10 @@ public class WeatherBullettinsUtils {
         rangeTimestamp = getNextDayRangesInTimestamp(1, workingHours);
         Pair<Day, Integer> dayIndex1 = getDayFrom(bulletins, rangeTimestamp, index);
         rangeTimestamp = getNextDayRangesInTimestamp(2, workingHours);
-        index += dayIndex1.getRight();
+        index = dayIndex1.getRight();
         Pair<Day, Integer> dayIndex2 = getDayFrom(bulletins, rangeTimestamp, index);
         rangeTimestamp = getNextDayRangesInTimestamp(3, workingHours);
-        index += dayIndex1.getRight();
+        index = dayIndex1.getRight();
         Pair<Day, Integer> dayIndex3 = getDayFrom(bulletins, rangeTimestamp, index);
         threeDaysForecast.setDay1(dayIndex1.getLeft());
         threeDaysForecast.setDay2(dayIndex2.getLeft());
@@ -35,11 +35,11 @@ public class WeatherBullettinsUtils {
 
     public static Pair<Day, Integer> getDayFrom(List<Bulletin> bulletins,List<Long>rangeTimestamp, int index){
         Triple<Info, Integer, Integer> infoNumberIndexBeforeWorkDay = generateInfoFrom(bulletins, rangeTimestamp.get(0), rangeTimestamp.get(1), index);
-        index += infoNumberIndexBeforeWorkDay.getRight();
+        index = infoNumberIndexBeforeWorkDay.getRight();
         Triple<Info, Integer,Integer> infoNumberIndexInsideWorkDay = generateInfoFrom(bulletins, rangeTimestamp.get(1), rangeTimestamp.get(2), index);
-        index += infoNumberIndexInsideWorkDay.getRight();
+        index = infoNumberIndexInsideWorkDay.getRight();
         Triple<Info, Integer, Integer> infoNumberIndexAfterWorkDay = generateInfoFrom(bulletins, rangeTimestamp.get(2), rangeTimestamp.get(3), index);
-        index += infoNumberIndexInsideWorkDay.getRight();
+        index = infoNumberIndexInsideWorkDay.getRight();
         Info infoOutsideWork = merge(infoNumberIndexBeforeWorkDay, infoNumberIndexAfterWorkDay);
         Day day = new Day();
         day.setDuringWorkingHours(infoNumberIndexInsideWorkDay.getLeft());
@@ -47,7 +47,7 @@ public class WeatherBullettinsUtils {
         return Pair.of(day,new Integer(index));
     }
 
-    private static Triple<Info,Integer, Integer> generateInfoFrom(List<Bulletin> bulletins, long startTimestamp, long endTimestamp, int startIndex){
+    public static Triple<Info,Integer, Integer> generateInfoFrom(List<Bulletin> bulletins, long startTimestamp, long endTimestamp, int startIndex){
         double maxTemperature;
         double minTemperature;
         int humidity;
@@ -56,17 +56,22 @@ public class WeatherBullettinsUtils {
         for(; startIndex<bulletins.size();startIndex++){
             if(bulletins.get(startIndex).getDateTimestamp() >= startTimestamp && bulletins.get(startIndex).getDateTimestamp() < endTimestamp){
                 maxTemperature = bulletins.get(startIndex).getInfo().getTempMax().doubleValue();
-                minTemperature = bulletins.get(startIndex).getInfo().getTempMax().doubleValue();
-                humidity = bulletins.get(startIndex).getInfo().getTempMax().intValue();
+                minTemperature = bulletins.get(startIndex).getInfo().getTempMin().doubleValue();
+                humidity = bulletins.get(startIndex).getInfo().getHumidity().intValue();
                 infoDay.setAverageMaxTemperature(infoDay.getAverageMaxTemperature()+maxTemperature);
                 infoDay.setAverageMinTemperature(infoDay.getAverageMinTemperature()+minTemperature);
                 infoDay.setAverageHumidity(infoDay.getAverageHumidity()+humidity);
                 numberOfElements++;
             }
+            if (bulletins.get(startIndex).getDateTimestamp() > endTimestamp){
+                break;
+            }
         }
-        infoDay.setAverageMaxTemperature(infoDay.getAverageMaxTemperature()/numberOfElements);
-        infoDay.setAverageMinTemperature(infoDay.getAverageMinTemperature()/numberOfElements);
-        infoDay.setAverageHumidity(infoDay.getAverageHumidity()/numberOfElements);
+        if (numberOfElements != 0) {
+            infoDay.setAverageMaxTemperature(infoDay.getAverageMaxTemperature() / numberOfElements);
+            infoDay.setAverageMinTemperature(infoDay.getAverageMinTemperature() / numberOfElements);
+            infoDay.setAverageHumidity(infoDay.getAverageHumidity() / numberOfElements);
+        }
         return Triple.of(infoDay,numberOfElements , new Integer(startIndex));
     }
 

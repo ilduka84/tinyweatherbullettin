@@ -100,11 +100,14 @@ Info:
       description: average Max Temperature
       type: number
       format: double
+      default: 0
     averageMinTemperature:
       description: averageMinTemperature
       type: number
       format: double
+      default: 0
     averageHumidity:
       description: average Humidity
       type: integer
+      default: 0
 
