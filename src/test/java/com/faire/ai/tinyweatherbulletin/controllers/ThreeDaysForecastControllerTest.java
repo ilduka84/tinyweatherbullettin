@@ -1,6 +1,6 @@
 package com.faire.ai.tinyweatherbulletin.controllers;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-class ThreeDaysForecastControllerTest {
+public class ThreeDaysForecastControllerTest {
 
     @InjectMocks
     ThreeDaysForecastController controller;
@@ -28,14 +28,14 @@ class ThreeDaysForecastControllerTest {
 
 
     @Test
-    void getThreeDaysForecast() throws Exception {
+    public void getThreeDaysForecast() throws Exception {
         mockMvc.perform(get("/three-days-forecast/{country}/{city}", "IT", "Rome"))
                 .andExpect(status().isOk());
 
     }
 
     @Test
-    void getThreeDaysForecast_404() throws Exception {
+    public void getThreeDaysForecast_404() throws Exception {
         mockMvc.perform(get("/three-days-forecast/{country}/{city}", "IT", "FAKECITY"))
                 .andExpect(status().is4xxClientError());
 

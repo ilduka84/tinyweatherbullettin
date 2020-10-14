@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-class WeatherBullettinsUtilsTest {
+public class WeatherBullettinsUtilsTest {
 
 
     @Value("classpath:weatherResponse.json")
@@ -36,7 +36,7 @@ class WeatherBullettinsUtilsTest {
 
 
     @Before
-    void init() throws IOException {
+    public void init() throws IOException {
         Gson gson = new Gson();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileResource.getInputStream()));
         this.weatherBullettins = gson.fromJson(bufferedReader, WeatherBullettins.class);
@@ -45,7 +45,7 @@ class WeatherBullettinsUtilsTest {
     }
 
     @Test
-    void getNextDayAtMidnight() {
+    public void getNextDayAtMidnight() {
         List<String> workingHours = new ArrayList<>();
         workingHours.add("9:00");
         workingHours.add("18:00");
@@ -55,7 +55,7 @@ class WeatherBullettinsUtilsTest {
     }
 
     @Test
-    void getDayFrom()throws IOException{
+    public void getDayFrom()throws IOException{
         List <Long>rangeTimestamp = new ArrayList<>();
         rangeTimestamp.add(1602504000L);
         rangeTimestamp.add(1602547200L);
@@ -70,22 +70,22 @@ class WeatherBullettinsUtilsTest {
         Integer averageHumidityduringWorkingHours =  64;
 
         Double averageMaxTemperatureoutsideWorkingHours = 288.93125000000003;
-        Double averageMinTemperatureoutsideWorkingHours = 288.93125000000003;
+        Double averageMinTemperatureoutsideWorkingHours = 288.8125;
         Integer averageHumidityoutsideWorkingHours= 60;
 
         Pair<Day, Integer> dayIntegerPair = WeatherBullettinsUtils.getDayFrom(this.weatherBullettins.getBullettinList(),rangeTimestamp,0);
-        assertTrue(dayIntegerPair.getLeft().getDuringWorkingHours().getAverageMaxTemperature()==averageMaxTemperatureduringWorkingHours);
-        assertTrue(dayIntegerPair.getLeft().getDuringWorkingHours().getAverageMinTemperature()==averageMinTemperatureduringWorkingHours);
-        assertTrue(dayIntegerPair.getLeft().getDuringWorkingHours().getAverageHumidity()==averageHumidityduringWorkingHours);
+        assertEquals(dayIntegerPair.getLeft().getDuringWorkingHours().getAverageMaxTemperature(),averageMaxTemperatureduringWorkingHours);
+        assertEquals(dayIntegerPair.getLeft().getDuringWorkingHours().getAverageMinTemperature(),averageMinTemperatureduringWorkingHours);
+        assertEquals(dayIntegerPair.getLeft().getDuringWorkingHours().getAverageHumidity(),averageHumidityduringWorkingHours);
 
-        assertTrue(dayIntegerPair.getLeft().getDuringWorkingHours().getAverageMaxTemperature()==averageMaxTemperatureoutsideWorkingHours);
-        assertTrue(dayIntegerPair.getLeft().getDuringWorkingHours().getAverageMinTemperature()==averageMinTemperatureoutsideWorkingHours);
-        assertTrue(dayIntegerPair.getLeft().getDuringWorkingHours().getAverageHumidity()==averageHumidityoutsideWorkingHours);
+        assertEquals(dayIntegerPair.getLeft().getOutsideWorkingHours().getAverageMaxTemperature(),averageMaxTemperatureoutsideWorkingHours);
+        assertEquals(dayIntegerPair.getLeft().getOutsideWorkingHours().getAverageMinTemperature(),averageMinTemperatureoutsideWorkingHours);
+        assertEquals(dayIntegerPair.getLeft().getOutsideWorkingHours().getAverageHumidity(),averageHumidityoutsideWorkingHours);
     }
 
 
     @Test
-    void generateInfoFrom() throws IOException {
+    public void generateInfoFrom() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileResource.getInputStream()));
         Gson gson = new Gson();
         weatherBullettins = gson.fromJson(bufferedReader, WeatherBullettins.class);
@@ -101,7 +101,7 @@ class WeatherBullettinsUtilsTest {
     }
 
     @Test
-    void generateInfoFromOutOfRange() throws IOException {
+    public void generateInfoFromOutOfRange() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileResource.getInputStream()));
         Gson gson = new Gson();
         weatherBullettins = gson.fromJson(bufferedReader, WeatherBullettins.class);

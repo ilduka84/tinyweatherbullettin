@@ -2,7 +2,6 @@ package com.faire.ai.tinyweatherbulletin.services.openWeather;
 
 import com.faire.ai.tinyweatherbulletin.entities.WeatherBullettins;
 import com.faire.ai.tinyweatherbulletin.services.IWeather;
-import com.faire.ai.tinyweatherbulletin.services.weather.OpenWeather;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
