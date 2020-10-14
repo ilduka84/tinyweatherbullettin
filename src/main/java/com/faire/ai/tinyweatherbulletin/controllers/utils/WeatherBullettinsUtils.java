@@ -55,9 +55,9 @@ public class WeatherBullettinsUtils {
         Integer numberOfElements=0;
         for(; startIndex<bulletins.size();startIndex++){
             if(bulletins.get(startIndex).getDateTimestamp() >= startTimestamp && bulletins.get(startIndex).getDateTimestamp() <= endTimestamp){
-                maxTemperature = bulletins.get(startIndex).getInfo().getTempMax().doubleValue();
-                minTemperature = bulletins.get(startIndex).getInfo().getTempMin().doubleValue();
-                humidity = bulletins.get(startIndex).getInfo().getHumidity().intValue();
+                maxTemperature = bulletins.get(startIndex).getInfo().getTempMax();
+                minTemperature = bulletins.get(startIndex).getInfo().getTempMin();
+                humidity = bulletins.get(startIndex).getInfo().getHumidity();
                 infoDay.setAverageMaxTemperature(infoDay.getAverageMaxTemperature()+maxTemperature);
                 infoDay.setAverageMinTemperature(infoDay.getAverageMinTemperature()+minTemperature);
                 infoDay.setAverageHumidity(infoDay.getAverageHumidity()+humidity);
@@ -72,7 +72,7 @@ public class WeatherBullettinsUtils {
             infoDay.setAverageMinTemperature(infoDay.getAverageMinTemperature() / numberOfElements);
             infoDay.setAverageHumidity(infoDay.getAverageHumidity() / numberOfElements);
         }
-        return Triple.of(infoDay,numberOfElements , new Integer(startIndex));
+        return Triple.of(infoDay,numberOfElements , startIndex);
     }
 
     private static Info merge(Triple<Info, Integer, Integer> info1, Triple<Info, Integer, Integer> info2){

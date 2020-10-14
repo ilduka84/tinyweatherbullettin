@@ -43,18 +43,6 @@ class WeatherBullettinsUtilsTest {
 
 
     }
-//INTEGRATION
-//    @Test
-//    void fromWeatherBullettinsTo() throws IOException {
-//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileResource.getInputStream()));
-//        Gson gson = new Gson();
-//        weatherBullettins = gson.fromJson(bufferedReader, WeatherBullettins.class);
-//        List<String> workingHours = new ArrayList<>();
-//        workingHours.add("9:00");
-//        workingHours.add("18:00");
-//        WeatherBullettinsUtils.fromWeatherBullettinsTo(weatherBullettins, workingHours);
-//
-//    }
 
     @Test
     void getNextDayAtMidnight() {
@@ -77,13 +65,13 @@ class WeatherBullettinsUtilsTest {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileResource.getInputStream()));
         Gson gson = new Gson();
         weatherBullettins = gson.fromJson(bufferedReader, WeatherBullettins.class);
-        Double averageMaxTemperatureduringWorkingHours= 287.18;
-        Double averageMinTemperatureduringWorkingHours= 287.18;
-        Integer averageHumidityduringWorkingHours =  63;
+        Double averageMaxTemperatureduringWorkingHours= 287.36333333333334;
+        Double averageMinTemperatureduringWorkingHours= 287.36333333333334;
+        Integer averageHumidityduringWorkingHours =  64;
 
-        Double averageMaxTemperatureoutsideWorkingHours = 289.0314285714286;
-        Double averageMinTemperatureoutsideWorkingHours = 288.8957142857143;
-        Integer averageHumidityoutsideWorkingHours= 59;
+        Double averageMaxTemperatureoutsideWorkingHours = 288.93125000000003;
+        Double averageMinTemperatureoutsideWorkingHours = 288.93125000000003;
+        Integer averageHumidityoutsideWorkingHours= 60;
 
         Pair<Day, Integer> dayIntegerPair = WeatherBullettinsUtils.getDayFrom(this.weatherBullettins.getBullettinList(),rangeTimestamp,0);
         assertTrue(dayIntegerPair.getLeft().getDuringWorkingHours().getAverageMaxTemperature()==averageMaxTemperatureduringWorkingHours);
@@ -95,24 +83,20 @@ class WeatherBullettinsUtilsTest {
         assertTrue(dayIntegerPair.getLeft().getDuringWorkingHours().getAverageHumidity()==averageHumidityoutsideWorkingHours);
     }
 
-    @Test
-    void getNextDayRangesInTimestamp(){
-
-    }
 
     @Test
     void generateInfoFrom() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileResource.getInputStream()));
         Gson gson = new Gson();
         weatherBullettins = gson.fromJson(bufferedReader, WeatherBullettins.class);
-        Double averageMaxTemperature = 289.95000000000005;
-        Double averageMinTemperature = 289.7125;
-        Integer  averageHumidity =  61;
+        Double averageMaxTemperature = 288.9920000000001;
+        Double averageMinTemperature = 288.802;
+        Integer  averageHumidity =  64;
         Triple<Info, Integer, Integer> infoIntegerIntegerTriple = WeatherBullettinsUtils
                 .generateInfoFrom(this.weatherBullettins.getBullettinList(),1602504000L,1602547200L, 0);
-        assertTrue(infoIntegerIntegerTriple.getLeft().getAverageMaxTemperature()==averageMaxTemperature);
-        assertTrue(infoIntegerIntegerTriple.getLeft().getAverageMinTemperature()==averageMinTemperature);
-        assertTrue(infoIntegerIntegerTriple.getLeft().getAverageHumidity()==averageHumidity);
+        assertEquals(infoIntegerIntegerTriple.getLeft().getAverageMaxTemperature(),averageMaxTemperature);
+        assertEquals(infoIntegerIntegerTriple.getLeft().getAverageMinTemperature(),averageMinTemperature);
+        assertEquals(infoIntegerIntegerTriple.getLeft().getAverageHumidity(),averageHumidity);
 
     }
 
