@@ -34,11 +34,11 @@ public class WeatherBullettinsUtils {
     }
 
     public static Pair<Day, Integer> getDayFrom(List<Bulletin> bulletins,List<Long>rangeTimestamp, int index){
-        Triple<Info, Integer, Integer> infoNumberIndexBeforeWorkDay = generateInfoFrom(bulletins, rangeTimestamp.get(0), rangeTimestamp.get(1), index);
+        Triple<Info, Integer, Integer> infoNumberIndexBeforeWorkDay = generateInfoFrom(bulletins, rangeTimestamp.get(0), rangeTimestamp.get(1)-1, index);
         index = infoNumberIndexBeforeWorkDay.getRight();
         Triple<Info, Integer,Integer> infoNumberIndexInsideWorkDay = generateInfoFrom(bulletins, rangeTimestamp.get(1), rangeTimestamp.get(2), index);
         index = infoNumberIndexInsideWorkDay.getRight();
-        Triple<Info, Integer, Integer> infoNumberIndexAfterWorkDay = generateInfoFrom(bulletins, rangeTimestamp.get(2), rangeTimestamp.get(3), index);
+        Triple<Info, Integer, Integer> infoNumberIndexAfterWorkDay = generateInfoFrom(bulletins, rangeTimestamp.get(2)+1, rangeTimestamp.get(3), index);
         index = infoNumberIndexInsideWorkDay.getRight();
         Info infoOutsideWork = merge(infoNumberIndexBeforeWorkDay, infoNumberIndexAfterWorkDay);
         Day day = new Day();
@@ -54,7 +54,7 @@ public class WeatherBullettinsUtils {
         Info infoDay = new Info();
         Integer numberOfElements=0;
         for(; startIndex<bulletins.size();startIndex++){
-            if(bulletins.get(startIndex).getDateTimestamp() >= startTimestamp && bulletins.get(startIndex).getDateTimestamp() < endTimestamp){
+            if(bulletins.get(startIndex).getDateTimestamp() >= startTimestamp && bulletins.get(startIndex).getDateTimestamp() <= endTimestamp){
                 maxTemperature = bulletins.get(startIndex).getInfo().getTempMax().doubleValue();
                 minTemperature = bulletins.get(startIndex).getInfo().getTempMin().doubleValue();
                 humidity = bulletins.get(startIndex).getInfo().getHumidity().intValue();
