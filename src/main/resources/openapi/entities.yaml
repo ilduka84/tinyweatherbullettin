@@ -1,20 +1,20 @@
 NotFound:
-  description: La risorsa richiesta non è stata trovata
+  description: Resource not found
   properties:
     message:
       type: string
-      default: Risorsa non trovata
+      default: Resource not found
   example:
-    message: Risorsa non trovata
+    message: Resource not found
 
 BadRequest:
-  description: Richiesta non valida
+  description: Request not valid
   properties:
     message:
       type: string
-      default: Richiesta non valida
+      default: Request not valid
   example:
-    message: Richiesta non valida
+    message: Request not valid
 
 GenericResponse:
   description: Generic Response
@@ -25,14 +25,35 @@ GenericResponse:
   example:
     message: Ok
 
-Unauthorized:
-  description: Non autorizzato
+ApiKeyError:
+  description: Wrong api key
   properties:
+    cod:
+      type: integer
+      default: 401
     message:
       type: string
-      default: Non autorizzato
-  example:
-    message: Non autorizzato
+      default: descriptiom
+
+WrongCityError:
+  description: Wrong city
+  properties:
+    cod:
+      type: integer
+      default: 404
+    message:
+      type: string
+      default: description
+
+LimitError:
+  description: Limit accomplished
+  properties:
+    cod:
+      type: integer
+      default: 429
+    message:
+      type: string
+      default: description
 
 GenericError:
   description: Generic Error

@@ -1,12 +1,34 @@
 NotFound:
-  description: La risorsa richiesta non è stata trovata
+  description: Not Found
   content:
     application/json:
       schema:
         $ref: './entities.yaml#/NotFound'
 
+ApiKeyError:
+  description: Api key error
+  content:
+    application/json:
+      schema:
+        $ref: './entities.yaml#/ApiKeyError'
+
+WrongCityError:
+  description: Wrong city error
+  content:
+    application/json:
+      schema:
+        $ref: './entities.yaml#/WrongCityError'
+
+LimitError:
+  description: Request limit
+  content:
+    application/json:
+      schema:
+        $ref: './entities.yaml#/LimitError'
+
+
 BadRequest:
-  description: Richiesta non valida
+  description: Not valid Request
   content:
     application/json:
       schema:
@@ -19,9 +41,3 @@ GenericError:
       schema:
         $ref: './entities.yaml#/GenericError'
 
-StatusError:
-  description: Sinistro in errore
-  content:
-    application/json:
-      schema:
-        $ref: './entities.yaml#/StatusError'

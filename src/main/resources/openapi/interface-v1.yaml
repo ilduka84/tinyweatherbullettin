@@ -52,14 +52,18 @@ paths:
             default: Milan
       responses:
         '200':
-          description: Three days forecast
+          description: Three days forecast Result
           content:
             application/json:
               schema:
                 $ref: "./entities.yaml#/ThreeDaysForecast"
         '400':
           $ref: './responses.yaml#/BadRequest'
+        '401':
+          $ref: './responses.yaml#/ApiKeyError'
         '404':
-          $ref: './responses.yaml#/NotFound'
+          $ref: './responses.yaml#/WrongCityError'
+        '429':
+          $ref: './responses.yaml#/LimitError'
         default:
           $ref: './responses.yaml#/GenericError'
